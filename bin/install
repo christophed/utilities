@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Leave this in your bash_profile:"
+echo "export PATH=\$HOME/Development/utilities/bin/:\$PATH"
+

@@ -1,0 +1,29 @@
+#!/usr/bin/ruby
+
+SECONDS_IN_DAY = 86400
+SECONDS_IN_YEAR = 3.15569e7
+
+today = Time.new
+default_start_date = Time.new(1989,01,13)
+
+class Time
+  def days_until(date)
+    (date.to_i - to_i)/SECONDS_IN_DAY
+  end
+end
+
+start_time  = if ARGV.length > 0
+               Time.new(*ARGV)
+              else
+                default_start_date
+              end
+
+# Just my idiosyncracy
+estimated_life_span_years = 80
+
+# Days passed
+days_passed = start_time.days_until today
+days_total = (estimated_life_span_years * SECONDS_IN_YEAR / SECONDS_IN_DAY).to_i
+puts "Days: #{days_passed} / #{days_total}"
+puts "Estimated date of completion: #{(start_time + estimated_life_span_years * SECONDS_IN_YEAR).strftime('%b %d, %Y')}"
+printf "Estimated time to completion: %.2f%\n", days_passed * 100.0 / (days_total)
